@@ -1,3 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+    color: black;
+}
+
+.bebas {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.roboto {
+    font-family: "Roboto", sans-serif;
+}
+
+.thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+}
+
+.move {
+    animation: animate 1s steps(18);
+    transform-origin: right;
+}
+
+.blend {
+    animation: blend-in 4s;
+}
+
+@keyframes animate {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: 384px;
+    }
+}
+
+@keyframes blend-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
