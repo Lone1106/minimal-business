@@ -4,39 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.active {
-    color: black;
-}
-
-.bebas {
-    font-family: "Bebas Neue", sans-serif;
-}
-
-.roboto {
-    font-family: "Roboto", sans-serif;
-}
-
-.thin {
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-}
-
-.move {
-    animation: animate 1s steps(18);
-    transform-origin: right;
+html {
+    scroll-behavior: smooth;
 }
 
 .blend {
     animation: blend-in 4s;
-}
-
-@keyframes animate {
-    0% {
-        margin-left: 0;
-    }
-    100% {
-        margin-left: 384px;
-    }
 }
 
 @keyframes blend-in {
