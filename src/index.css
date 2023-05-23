@@ -6,10 +6,20 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding: 6rem;
 }
 
 .blend {
     animation: blend-in 4s;
+}
+
+.menu-open {
+    left: 0;
+    opacity: 1;
+}
+
+.active-nav {
+    color: black;
 }
 
 @keyframes blend-in {

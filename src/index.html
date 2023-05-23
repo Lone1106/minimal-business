@@ -9,6 +9,7 @@
             src="https://kit.fontawesome.com/7c5708611e.js"
             crossorigin="anonymous"
         ></script>
+        <script src="./script.js" defer></script>
     </head>
     <body
         class="text-base sm:ml-12 sm:mr-12 md:ml-30 md:mr-30 xl:ml-64 xl:mr-64"
@@ -21,21 +22,21 @@
                 <ul class="flex justify-between gap-8 text-2xl">
                     <li>
                         <a
-                            class="text-black hover:text-black transition-all"
+                            class="text-slate-300 hover:text-black transition-all active-nav nav-item"
                             href="#home"
                             >Home</a
                         >
                     </li>
                     <li>
                         <a
-                            class="text-slate-300 hover:text-black transition-all"
+                            class="text-slate-300 hover:text-black transition-all nav-item"
                             href="#products"
                             >Products</a
                         >
                     </li>
                     <li>
                         <a
-                            class="text-slate-300 hover:text-black transition-all"
+                            class="text-slate-300 hover:text-black transition-all nav-item"
                             href="#contact"
                             >Contact</a
                         >
@@ -47,10 +48,47 @@
                     <i class="fa-solid fa-cart-shopping fa-xl"></i>
                 </div>
                 <div class="w-7 h-7 sm:hidden">
-                    <i class="fa-solid fa-xl fa-bars"></i>
+                    <i class="open fa-solid fa-xl fa-bars"></i>
                 </div>
             </div>
+
+            <!-- MOBILE NAVIGATION -->
+            <div
+                class="mobile-nav bg-white w-full h-screen fixed top-0 left-full flex justify-center items-center transition-all opacity-0 duration-300 md:hidden"
+            >
+                <div class="absolute top-8 right-10">
+                    <i class="close fa-solid fa-xmark fa-2xl"></i>
+                </div>
+                <nav>
+                    <ul
+                        class="flex flex-col text-center justify-between gap-8 text-4xl"
+                    >
+                        <li>
+                            <a
+                                class="text-slate-300 hover:text-black transition-all nav-item-mo active-nav"
+                                href="#home"
+                                >Home</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="text-slate-300 hover:text-black transition-all nav-item-mo"
+                                href="#products"
+                                >Products</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="text-slate-300 hover:text-black transition-all nav-item-mo"
+                                href="#contact"
+                                >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
+
         <main class="pl-8 pr-8">
             <section
                 id="home"
@@ -315,7 +353,7 @@
                     ><i class="fa-brands fa-square-facebook fa-2xl"></i
                 ></a>
             </div>
-            <p>&copy; <span>2023</span> XY Media. All rights reserved.</p>
+            <p>&copy; <span class="copy"></span> XY Media. All rights reserved.</p>
         </footer>
     </body>
 </html>
