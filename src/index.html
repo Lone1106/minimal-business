@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>XY Media</title>
         <link href="./index.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="img/fav.png" />
         <script
             src="https://kit.fontawesome.com/7c5708611e.js"
             crossorigin="anonymous"
         ></script>
-        <script src="./script.js" defer></script>
+        <script src="./script.js" defer type="module"></script>
     </head>
     <body
         class="text-base sm:ml-12 sm:mr-12 md:ml-30 md:mr-30 xl:ml-64 xl:mr-64"
@@ -45,10 +46,12 @@
             </nav>
             <div class="flex justify-center items-center gap-4">
                 <div class="w-7 h-7 cursor-pointer">
-                    <i class="cart-open fa-solid fa-cart-shopping fa-xl"></i>
+                    <i
+                        class="fa-solid fa-cart-shopping fa-xl open-close-cart"
+                    ></i>
                 </div>
                 <div class="w-7 h-7 sm:hidden">
-                    <i class="open fa-solid fa-xl fa-bars"></i>
+                    <i class="fa-solid fa-xl fa-bars open-close-nav"></i>
                 </div>
             </div>
 
@@ -57,7 +60,7 @@
                 class="mobile-nav bg-white w-full h-screen fixed top-0 -right-full flex justify-center items-center transition-all opacity-0 duration-300 md:hidden"
             >
                 <div class="absolute top-8 right-10">
-                    <i class="close fa-solid fa-xmark fa-2xl"></i>
+                    <i class="fa-solid fa-xmark fa-2xl open-close-nav"></i>
                 </div>
                 <nav>
                     <ul
@@ -95,7 +98,7 @@
                 class="cart bg-white w-full md:w-3/12 h-screen fixed top-0 -right-full flex flex-col justify-start items-center transition-all z-50 px-8 py-40 opacity-0 duration-300"
             >
                 <div class="absolute top-8 right-10 cursor-pointer">
-                    <i class="cart-close fa-solid fa-xmark fa-2xl"></i>
+                    <i class="fa-solid fa-xmark fa-2xl open-close-cart"></i>
                 </div>
 
                 <div class="flex justify-between items-center w-full mb-6">
@@ -161,189 +164,8 @@
                     Products
                 </h2>
                 <div
-                    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
-                >
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                    <figure
-                        class="w-full h-full rounded border-solid border-black border-2"
-                    >
-                        <div class="overflow-hidden">
-                            <img
-                                class="h-full"
-                                src="./img/mockups.jpg"
-                                alt="Product image"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bebas text-2xl">Mockup Set</h3>
-                            <p class="font-roboto">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat, sed diam voluptua.
-                            </p>
-                            <div
-                                class="pt-4 flex justify-end gap-4 items-center"
-                            >
-                                <p class="font-bebas text-xl">4,99 €</p>
-                                <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
-                                >
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </figure>
-                </div>
+                    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 products-grid"
+                ></div>
             </section>
 
             <section id="contact" class="mb-32">
