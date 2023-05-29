@@ -50,7 +50,8 @@ navItemsMobile.forEach((i) => {
 // SHOPPING CART AND PRODUCTS
 const products = [
     {
-        id: 1,
+        id: "1",
+        quantity: 1,
         price: 4.99,
         title: "Product 1",
         image: new URL("img/1.png", import.meta.url),
@@ -58,7 +59,8 @@ const products = [
             "Description for the current product will go in here. Dont make it too long though!",
     },
     {
-        id: 2,
+        id: "2",
+        quantity: 1,
         price: 10.99,
         title: "Product 2",
         image: new URL("img/2.png", import.meta.url),
@@ -66,7 +68,8 @@ const products = [
             "Description for the current product will go in here. Dont make it too long though!",
     },
     {
-        id: 3,
+        id: "3",
+        quantity: 1,
         price: 499.99,
         title: "Product 3",
         image: new URL("img/3.png", import.meta.url),
@@ -74,7 +77,8 @@ const products = [
             "Description for the current product will go in here. Dont make it too long though!",
     },
     {
-        id: 4,
+        id: "4",
+        quantity: 1,
         price: 0.99,
         title: "Product 4",
         image: new URL("img/4.png", import.meta.url),
@@ -82,7 +86,8 @@ const products = [
             "Description for the current product will go in here. Dont make it too long though!",
     },
     {
-        id: 5,
+        id: "5",
+        quantity: 1,
         price: 1.99,
         title: "Product 5",
         image: new URL("img/5.png", import.meta.url),
@@ -90,7 +95,8 @@ const products = [
             "Description for the current product will go in here. Dont make it too long though!",
     },
     {
-        id: 6,
+        id: "6",
+        quantity: 1,
         price: 19.99,
         title: "Product 6",
         image: new URL("img/6.png", import.meta.url),
@@ -127,7 +133,8 @@ function createProducts() {
                             >
                                 <p class="font-bebas text-xl">${product.price} €</p>
                                 <button
-                                    class="bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
+                                    class="add bg-black text-white font-bebas px-3 py-1 rounded border-2 border-solid border-white hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black transition"
+                                    data-identifier="${product.id}"
                                 >
                                     Add to cart
                                 </button>
@@ -139,3 +146,51 @@ function createProducts() {
     });
 }
 createProducts();
+
+// ADD TO CART
+const addButtons = document.querySelectorAll(".add");
+let cartItems = [];
+
+addButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let key = button.dataset.identifier;
+        let item = products[key - 1];
+
+        if (cartItems.includes(item)) {
+            cartItems.find((x) => x.id === key).quantity++;
+        } else {
+            cartItems.push(item);
+        }
+        createCartItems();
+    });
+});
+
+function createCartItems() {
+    clearCart();
+    cartItems.forEach((item) => {
+        let li = document.createElement("li");
+        li.classList.add("flex", "justify-between", "items-center");
+        li.innerHTML = `
+            <span>${item.title}</span>
+            <div class="flex gap-1 items-center">
+                <button>-</button>
+                <p>${item.quantity}</p>
+                <button>+</button>
+            </div>
+            <span class="w-20 text-right">${item.price} €</span>
+        `;
+        cartList.appendChild(li);
+    });
+}
+
+function clearCart() {
+    cartList.innerHTML = ``;
+}
+
+function buyItemsNow() {
+    clearCart();
+    cartItems = [];
+    setTimeout(() => alert("Thanks for shopping with us!"), 200);
+}
+
+buyNow.onclick = buyItemsNow;
