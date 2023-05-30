@@ -1,6 +1,7 @@
 # Minimal business website
 
-Minimal business website built with HTML, CSS and Javascript with a working shopping cart
+Minimal business website built with HTML, Tailwind and Javascript with a basic shopping cart.
+The site is intened for selling online products like wallpapers, stock images etc... hence no quantity in the cart, because you only need to buy it once.
 
 Sections: 
 - Landing

@@ -9,6 +9,7 @@ const cartTotal = document.querySelector(".cart-total");
 const openCloseNav = document.querySelectorAll(".open-close-nav");
 const openCloseCart = document.querySelectorAll(".open-close-cart");
 const productsGrid = document.querySelector(".products-grid");
+const clearCartButton = document.querySelector(".clear-cart");
 
 // COPY YEAR FOOTER
 let year = new Date().getFullYear();
@@ -191,3 +192,8 @@ function buyItemsNow() {
     setTimeout(() => alert("Thanks for shopping with us!"), 200);
 }
 buyNow.onclick = buyItemsNow;
+clearCartButton.onclick = () => {
+    cartTotal.innerHTML = "0 €";
+    cartList.innerHTML = "";
+    cartItems = [];
+};
