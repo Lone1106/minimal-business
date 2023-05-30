@@ -52,6 +52,7 @@ navItemsMobile.forEach((i) => {
 const products = [
     {
         id: "1",
+        quantity: 1,
         price: 4.99,
         title: "Product 1",
         image: new URL("img/1.png", import.meta.url),
@@ -60,6 +61,7 @@ const products = [
     },
     {
         id: "2",
+        quantity: 1,
         price: 10.99,
         title: "Product 2",
         image: new URL("img/2.png", import.meta.url),
@@ -68,6 +70,7 @@ const products = [
     },
     {
         id: "3",
+        quantity: 1,
         price: 499.99,
         title: "Product 3",
         image: new URL("img/3.png", import.meta.url),
@@ -76,6 +79,7 @@ const products = [
     },
     {
         id: "4",
+        quantity: 1,
         price: 0.99,
         title: "Product 4",
         image: new URL("img/4.png", import.meta.url),
@@ -84,6 +88,7 @@ const products = [
     },
     {
         id: "5",
+        quantity: 1,
         price: 1.99,
         title: "Product 5",
         image: new URL("img/5.png", import.meta.url),
@@ -92,6 +97,7 @@ const products = [
     },
     {
         id: "6",
+        quantity: 1,
         price: 19.99,
         title: "Product 6",
         image: new URL("img/6.png", import.meta.url),
@@ -152,7 +158,7 @@ addButtons.forEach((button) => {
         let item = products[key - 1];
 
         if (cartItems.includes(item)) {
-            alert("Item already in cart! Only one copy can be bought!");
+            cartItems.find((x) => x.id === key).quantity++;
         } else {
             cartItems.push(item);
         }
@@ -167,17 +173,40 @@ function createCartItems() {
         li.classList.add("flex", "justify-between", "items-center");
         li.innerHTML = `
             <span>${item.title}</span>
-            <span class="w-20 text-right">${item.price} €</span>
+            <input type="number" min="0" max="10" value="${
+                item.quantity
+            }" class="quan w-10 text-center" />
+            <span class="w-20 text-right">${(
+                item.price * item.quantity
+            ).toFixed(2)} €</span>
         `;
         cartList.appendChild(li);
+        handleQuantity(item);
     });
     calculateCart();
+}
+
+function handleQuantity(item) {
+    const quanInput = document.querySelectorAll(".quan").forEach((input) =>
+        input.addEventListener("change", (i) => {
+            if (Number(i.target.value) < 1) {
+                cartItems.splice(
+                    cartItems.findIndex((x) => x.id === item.id),
+                    1
+                );
+            } else {
+                item.quantity = Number(i.target.value)
+            }
+            createCartItems();
+        })
+    );
 }
 
 function calculateCart() {
     let total = 0;
     cartItems.forEach((item) => {
-        total += item.price;
+        let price = item.price * item.quantity;
+        total += price;
     });
     cartTotal.innerHTML = `${total.toFixed(2)} €`;
 }
@@ -189,11 +218,7 @@ function clearCart() {
 function buyItemsNow() {
     clearCart();
     cartItems = [];
+    cartTotal.innerHTML = "0 €";
     setTimeout(() => alert("Thanks for shopping with us!"), 200);
 }
 buyNow.onclick = buyItemsNow;
-clearCartButton.onclick = () => {
-    cartTotal.innerHTML = "0 €";
-    cartList.innerHTML = "";
-    cartItems = [];
-};
