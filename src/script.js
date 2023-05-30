@@ -51,7 +51,6 @@ navItemsMobile.forEach((i) => {
 const products = [
     {
         id: "1",
-        quantity: 1,
         price: 4.99,
         title: "Product 1",
         image: new URL("img/1.png", import.meta.url),
@@ -60,7 +59,6 @@ const products = [
     },
     {
         id: "2",
-        quantity: 1,
         price: 10.99,
         title: "Product 2",
         image: new URL("img/2.png", import.meta.url),
@@ -69,7 +67,6 @@ const products = [
     },
     {
         id: "3",
-        quantity: 1,
         price: 499.99,
         title: "Product 3",
         image: new URL("img/3.png", import.meta.url),
@@ -78,7 +75,6 @@ const products = [
     },
     {
         id: "4",
-        quantity: 1,
         price: 0.99,
         title: "Product 4",
         image: new URL("img/4.png", import.meta.url),
@@ -87,7 +83,6 @@ const products = [
     },
     {
         id: "5",
-        quantity: 1,
         price: 1.99,
         title: "Product 5",
         image: new URL("img/5.png", import.meta.url),
@@ -96,7 +91,6 @@ const products = [
     },
     {
         id: "6",
-        quantity: 1,
         price: 19.99,
         title: "Product 6",
         image: new URL("img/6.png", import.meta.url),
@@ -157,7 +151,7 @@ addButtons.forEach((button) => {
         let item = products[key - 1];
 
         if (cartItems.includes(item)) {
-            cartItems.find((x) => x.id === key).quantity++;
+            alert("Item already in cart! Only one copy can be bought!");
         } else {
             cartItems.push(item);
         }
@@ -172,15 +166,19 @@ function createCartItems() {
         li.classList.add("flex", "justify-between", "items-center");
         li.innerHTML = `
             <span>${item.title}</span>
-            <div class="flex gap-1 items-center">
-                <button>-</button>
-                <p>${item.quantity}</p>
-                <button>+</button>
-            </div>
             <span class="w-20 text-right">${item.price} €</span>
         `;
         cartList.appendChild(li);
     });
+    calculateCart();
+}
+
+function calculateCart() {
+    let total = 0;
+    cartItems.forEach((item) => {
+        total += item.price;
+    });
+    cartTotal.innerHTML = `${total.toFixed(2)} €`;
 }
 
 function clearCart() {
@@ -192,5 +190,4 @@ function buyItemsNow() {
     cartItems = [];
     setTimeout(() => alert("Thanks for shopping with us!"), 200);
 }
-
 buyNow.onclick = buyItemsNow;

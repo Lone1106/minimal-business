@@ -9,10 +9,6 @@ html {
     scroll-padding: 6rem;
 }
 
-.blend {
-    animation: blend-in 4s;
-}
-
 .menu-open {
     right: 0;
     opacity: 1;
