@@ -52,7 +52,6 @@ navItemsMobile.forEach((i) => {
 const products = [
     {
         id: "1",
-        quantity: 1,
         price: 4.99,
         title: "Product 1",
         image: new URL("img/1.png", import.meta.url),
@@ -61,7 +60,6 @@ const products = [
     },
     {
         id: "2",
-        quantity: 1,
         price: 10.99,
         title: "Product 2",
         image: new URL("img/2.png", import.meta.url),
@@ -70,7 +68,6 @@ const products = [
     },
     {
         id: "3",
-        quantity: 1,
         price: 499.99,
         title: "Product 3",
         image: new URL("img/3.png", import.meta.url),
@@ -79,7 +76,6 @@ const products = [
     },
     {
         id: "4",
-        quantity: 1,
         price: 0.99,
         title: "Product 4",
         image: new URL("img/4.png", import.meta.url),
@@ -88,7 +84,6 @@ const products = [
     },
     {
         id: "5",
-        quantity: 1,
         price: 1.99,
         title: "Product 5",
         image: new URL("img/5.png", import.meta.url),
@@ -97,7 +92,6 @@ const products = [
     },
     {
         id: "6",
-        quantity: 1,
         price: 19.99,
         title: "Product 6",
         image: new URL("img/6.png", import.meta.url),
@@ -121,9 +115,10 @@ function createProducts() {
         newFigure.innerHTML = `
             <div class="overflow-hidden">
                             <img
-                                class="h-full"
+                                class="w-full"
                                 src="${product.image}"
-                                alt="Product image"
+                                alt="Image of ${product.title}"
+                                loading="lazy"
                             />
                         </div>
                         <div class="p-4">
@@ -149,74 +144,73 @@ function createProducts() {
 createProducts();
 
 // ADD TO CART
-const addButtons = document.querySelectorAll(".add");
 let cartItems = [];
-
-addButtons.forEach((button) => {
+const addButtons = document.querySelectorAll(".add").forEach((button) => {
+    let itemKey = Number(button.dataset.identifier);
     button.addEventListener("click", () => {
-        let key = button.dataset.identifier;
-        let item = products[key - 1];
-
-        if (cartItems.includes(item)) {
-            cartItems.find((x) => x.id === key).quantity++;
+        let newItem = JSON.parse(JSON.stringify(products[itemKey - 1]));
+        let filter = cartItems.find((x) => x.id === newItem.id);
+        if (!!filter) {
+            filter.quantity++;
         } else {
-            cartItems.push(item);
+            newItem.quantity = 1;
+            cartItems.push(newItem);
         }
         createCartItems();
     });
 });
 
 function createCartItems() {
-    clearCart();
+    cartList.innerHTML = "";
     cartItems.forEach((item) => {
         let li = document.createElement("li");
         li.classList.add("flex", "justify-between", "items-center");
         li.innerHTML = `
             <span>${item.title}</span>
-            <input type="number" min="0" max="10" value="${
+            <input type="number" min="0" max="10" placeholder="1" value="${
                 item.quantity
-            }" class="quan w-10 text-center" />
+            }" class="quan w-10 text-center" data-ident=${item.id} />
             <span class="w-20 text-right">${(
                 item.price * item.quantity
             ).toFixed(2)} €</span>
         `;
         cartList.appendChild(li);
-        handleQuantity(item);
+        handleQuantity();
     });
-    calculateCart();
+    calculateTotal();
 }
 
-function handleQuantity(item) {
-    const quanInput = document.querySelectorAll(".quan").forEach((input) =>
-        input.addEventListener("change", (i) => {
-            if (Number(i.target.value) < 1) {
+function handleQuantity() {
+    const quantityEl = document.querySelectorAll(".quan").forEach((el) => {
+        el.addEventListener("change", (e) => {
+            let ident = el.dataset.ident;
+            let newQuantity = Number(e.target.value);
+
+            if (newQuantity < 1) {
                 cartItems.splice(
-                    cartItems.findIndex((x) => x.id === item.id),
+                    cartItems.findIndex((x) => x.id === ident),
                     1
                 );
             } else {
-                item.quantity = Number(i.target.value)
+                cartItems.find((x) => x.id === ident).quantity = newQuantity;
             }
+
             createCartItems();
-        })
-    );
+        });
+    });
 }
 
-function calculateCart() {
+function calculateTotal() {
     let total = 0;
     cartItems.forEach((item) => {
-        let price = item.price * item.quantity;
-        total += price;
+        let curr = item.quantity * item.price;
+        total += curr;
     });
     cartTotal.innerHTML = `${total.toFixed(2)} €`;
 }
 
-function clearCart() {
-    cartList.innerHTML = ``;
-}
-
 function buyItemsNow() {
-    clearCart();
+    cartList.innerHTML = "";
     cartItems = [];
     cartTotal.innerHTML = "0 €";
     setTimeout(() => alert("Thanks for shopping with us!"), 200);
