@@ -183,14 +183,12 @@ function createCartItems() {
 function handleQuantity() {
     const quantityEl = document.querySelectorAll(".quan").forEach((el) => {
         el.addEventListener("change", (e) => {
-            let ident = el.dataset.ident;
+            let ident = e.target.dataset.ident;
             let newQuantity = Number(e.target.value);
+            let filter = cartItems.findIndex((x) => x.id === ident);
 
             if (newQuantity < 1) {
-                cartItems.splice(
-                    cartItems.findIndex((x) => x.id === ident),
-                    1
-                );
+                if (filter !== -1) cartItems.splice(filter, 1);
             } else {
                 cartItems.find((x) => x.id === ident).quantity = newQuantity;
             }
