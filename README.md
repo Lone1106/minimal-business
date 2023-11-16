@@ -7,5 +7,3 @@ Sections:
 - Projects
 - Shopping cart
 - Contact
-
-[Preview here](https://leafy-sprinkles-8fa441.netlify.app/)
